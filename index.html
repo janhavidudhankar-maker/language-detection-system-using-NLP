@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Language Detection using NLP</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>🌐 Language Detection</h1>
+        <p>Enter a sentence and detect its language using NLP</p>
+
+        <textarea id="textInput" placeholder="Type your sentence here..."></textarea>
+
+        <button onclick="detectLanguage()">Detect Language</button>
+
+        <div id="result"></div>
+    </div>
+
+    <script>
+        async function detectLanguage() {
+            const text = document.getElementById("textInput").value;
+            const result = document.getElementById("result");
+
+            if (text.trim() === "") {
+                result.innerHTML = "⚠️ Please enter some text.";
+                return;
+            }
+
+            try {
+                const response = await fetch("/detect", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ text: text })
+                });
+
+                const data = await response.json();
+
+                if (data.error) {
+                    result.innerHTML = "❌ " + data.error;
+                } else {
+                    result.innerHTML =
+                        "Detected Language: <strong>" + data.language + "</strong>";
+                }
+
+            } catch (error) {
+                result.innerHTML = "❌ Server connection error.";
+            }
+        }
+    </script>
+
+</body>
+</html>
