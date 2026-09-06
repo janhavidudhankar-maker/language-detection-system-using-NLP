@@ -54,7 +54,6 @@ Language detection using langdetect
 Language code is obtained
        ↓
 Language name is identified
-
 ## Project Structure
 ```text
 Language-Detection-System-Using-NLP/
@@ -69,12 +68,12 @@ Language-Detection-System-Using-NLP/
     └── app.py
 
 ## Steps to Execute the Project
-### 1. Install Python
+1. Install Python
 Install Python on the system.
-### 2. Install Required Libraries
+ 2. Install Required Libraries
 Open the terminal and run:
 pip install -r requirements.txt
-### 3. Run the Flask Application
+ 3. Run the Flask Application
 python app.py
 
 ### 4. Open the Application
